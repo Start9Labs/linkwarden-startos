@@ -33,7 +33,7 @@ const dict = {
   // actions/resetPassword.ts
   'Reset Admin Password': 25,
   'Generate a new password for the administrator account. Use this if you are locked out of the web interface.': 26,
-  'This replaces the administrator password with a new random one. Anyone still signed in stays signed in.': 27,
+  'This replaces the administrator password with a new random one and signs the administrator out everywhere, revoking their access tokens.': 27,
   'Admin Password Reset': 28,
   'The administrator password has been reset. Save these credentials somewhere safe — they are shown once.': 29,
   Username: 30,

@@ -39,7 +39,7 @@ application needs to know about itself.
 
 ## Image and Container Runtime
 
-Three images, run as three daemons that share one network namespace. The application image is built through the root `Dockerfile`, a temporary layer that disables the emSign ECC Root CA - G3 and Comodo AAA roots in its CA store, sets `NODE_OPTIONS=--use-openssl-ca`, and replaces the image's Node with 22.23.4; each part comes out once upstream ships an image built on a fixed store and Node. The other two are unmodified.
+Three images, run as three daemons that share one network namespace. The application image is built through the root `Dockerfile`, a temporary layer that disables the emSign ECC Root CA - G3 and Comodo AAA roots in its CA store and sets `NODE_OPTIONS=--use-openssl-ca`; it comes out once upstream ships an image built on a fixed store. The other two are unmodified.
 
 | Property      | Value                                                                         |
 | ------------- | ----------------------------------------------------------------------------- |
@@ -190,16 +190,19 @@ the form opens and preselecting a public domain (HTTPS first), else the
 - **When to run it** — the administrator has lost their password. With no SMTP
   configured there is no reset email, and Linkwarden has no CLI, so without this
   the account is unreachable.
-- **What it changes** — the `password` column of the administrator's row, via
-  the application's own Prisma client and bcrypt. No other account and nothing
-  else in the database is touched.
+- **What it changes** — in one transaction through the application's own Prisma
+  client, the administrator's row gets a new bcrypt `password`, its
+  wrong-password counter (`passwordRetries`, `passwordRetryAt`) cleared and its
+  `sessionVersion` incremented, and every unrevoked `AccessToken` it owns is
+  marked revoked — the same as Linkwarden's own emailed password reset. The
+  administrator is signed out of every browser, app and integration (browser
+  extension, Floccus), which must sign in again. No other account is touched.
 - **Cost** — seconds, with no interruption. The service must be **running**,
   because the database is a sidecar rather than a file on a volume.
 - **Repeat safety** — safe to repeat; each run mints a new password and
   invalidates the previous one.
-- **What happens next** — sign in with the credentials returned. Sessions are
-  JWTs signed by a separate secret, so anyone already signed in stays signed
-  in, exactly as on an ordinary password change.
+- **What happens next** — sign in with the credentials returned on each client.
+  Create replacement access tokens for integrations that use them.
 - **Outputs** — the account's username, and the new password, masked and
   copyable. It is shown once per run.
 

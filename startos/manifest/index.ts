@@ -15,7 +15,7 @@ export const manifest = setupManifest({
     linkwarden: {
       source: {
         dockerBuild: {
-          buildArgs: { IMAGE: 'ghcr.io/linkwarden/linkwarden:v2.16.3' },
+          buildArgs: { IMAGE: 'ghcr.io/linkwarden/linkwarden:v2.17.0' },
         },
       },
       arch: ['x86_64', 'aarch64'],

@@ -15,7 +15,7 @@ export const resetPassword = sdk.Action.withoutInput(
       'Generate a new password for the administrator account. Use this if you are locked out of the web interface.',
     ),
     warning: i18n(
-      'This replaces the administrator password with a new random one. Anyone still signed in stays signed in.',
+      'This replaces the administrator password with a new random one and signs the administrator out everywhere, revoking their access tokens.',
     ),
     allowedStatuses: 'only-running',
     group: null,
@@ -38,7 +38,7 @@ export const resetPassword = sdk.Action.withoutInput(
       null,
       'reset-password',
       async (sub) => {
-        const script = `const bcrypt=require('/data/node_modules/bcrypt');const {PrismaClient}=require('/data/node_modules/@prisma/client');const p=new PrismaClient();(async()=>{const u=await p.user.findUnique({where:{id:${adminUserId}}});if(!u){console.error('NOUSER');process.exit(2)}await p.user.update({where:{id:u.id},data:{password:bcrypt.hashSync('${password}',10)}});process.stdout.write(u.username||u.email||'');await p.$disconnect()})().catch(e=>{console.error(e.message);process.exit(3)})`
+        const script = `const bcrypt=require('/data/node_modules/bcrypt');const {PrismaClient}=require('/data/node_modules/@prisma/client');const p=new PrismaClient();(async()=>{const u=await p.user.findUnique({where:{id:${adminUserId}}});if(!u){console.error('NOUSER');process.exit(2)}await p.$transaction([p.user.update({where:{id:u.id},data:{password:bcrypt.hashSync('${password}',10),passwordRetries:0,passwordRetryAt:null,sessionVersion:{increment:1}}}),p.accessToken.updateMany({where:{userId:u.id,revoked:false},data:{revoked:true}})]);process.stdout.write(u.username||u.email||'');await p.$disconnect()})().catch(e=>{console.error(e.message);process.exit(3)})`
 
         const res = await sub.exec(['node', '-e', script], {
           cwd: '/data',
