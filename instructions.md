@@ -63,6 +63,10 @@ StartOS provides a way back instead:
 2. Copy the username and password it gives you — the password is shown once.
 3. Sign in with them.
 
+It also signs the administrator out everywhere, so the mobile app, the browser
+extension and any other integration using an access token have to sign in
+again.
+
 This resets the administrator account only. As the administrator you can change
 anyone else's password from Linkwarden's own user management.
 

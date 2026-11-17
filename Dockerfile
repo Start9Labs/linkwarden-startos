@@ -5,6 +5,3 @@ RUN sed -i -E 's#^(mozilla/(emSign_ECC_Root_CA_-_G3|Comodo_AAA_Services_root)\.c
  && update-ca-certificates --fresh \
  && ! grep -q MIICTjCCAdOgAwIBAgIKPPYHqWhwDtqLhDAKBggqhkjOPQQDAzBr /etc/ssl/certs/ca-certificates.crt
 ENV NODE_OPTIONS=--use-openssl-ca
-COPY --from=node:22.23.4-bookworm-slim /usr/local/bin/node /usr/local/bin/node
-ENV NODE_VERSION=22.23.4
-RUN [ "$(node --version)" = v22.23.4 ]
