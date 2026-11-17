@@ -5,6 +5,8 @@ export const current = VersionInfo.of({
   releaseNotes: {
     en_US: `Updated Linkwarden to 2.17.0.
 
+The first start after updating may take longer on large libraries while Linkwarden initializes the new link order.
+
 **Features**
 
 - Drag links within a collection into a custom order, now the default sort
@@ -19,6 +21,8 @@ export const current = VersionInfo.of({
 
 [Full release notes](https://github.com/linkwarden/linkwarden/releases/tag/v2.17.0)`,
     es_ES: `Linkwarden actualizado a 2.17.0.
+
+El primer inicio tras la actualización puede tardar más en bibliotecas grandes mientras Linkwarden inicializa el nuevo orden de los enlaces.
 
 **Novedades**
 
@@ -35,6 +39,8 @@ export const current = VersionInfo.of({
 [Notas completas](https://github.com/linkwarden/linkwarden/releases/tag/v2.17.0)`,
     de_DE: `Linkwarden auf 2.17.0 aktualisiert.
 
+Der erste Start nach dem Update kann bei großen Bibliotheken länger dauern, während Linkwarden die neue Link-Reihenfolge einrichtet.
+
 **Neu**
 
 - Links in einer Sammlung per Drag-and-drop in eine eigene Reihenfolge bringen, jetzt die Standardsortierung
@@ -50,6 +56,8 @@ export const current = VersionInfo.of({
 [Vollständige Versionshinweise](https://github.com/linkwarden/linkwarden/releases/tag/v2.17.0)`,
     pl_PL: `Zaktualizowano Linkwarden do 2.17.0.
 
+Pierwsze uruchomienie po aktualizacji może potrwać dłużej przy dużych bibliotekach, gdy Linkwarden ustawia nową kolejność linków.
+
 **Nowości**
 
 - Przeciągaj linki w kolekcji, ustalając własną kolejność — teraz domyślne sortowanie
@@ -64,6 +72,8 @@ export const current = VersionInfo.of({
 
 [Pełne informacje o wydaniu](https://github.com/linkwarden/linkwarden/releases/tag/v2.17.0)`,
     fr_FR: `Linkwarden mis à jour vers 2.17.0.
+
+Le premier démarrage après la mise à jour peut être plus long pour les grandes bibliothèques, le temps que Linkwarden initialise le nouvel ordre des liens.
 
 **Nouveautés**
 

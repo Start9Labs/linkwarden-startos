@@ -201,9 +201,8 @@ the form opens and preselecting a public domain (HTTPS first), else the
   because the database is a sidecar rather than a file on a volume.
 - **Repeat safety** — safe to repeat; each run mints a new password and
   invalidates the previous one.
-- **What happens next** — sign in with the credentials returned. Sessions are
-  JWTs signed by a separate secret, so anyone already signed in stays signed
-  in, exactly as on an ordinary password change.
+- **What happens next** — sign in with the credentials returned on each client.
+  Create replacement access tokens for integrations that use them.
 - **Outputs** — the account's username, and the new password, masked and
   copyable. It is shown once per run.
 
