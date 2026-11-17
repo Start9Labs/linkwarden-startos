@@ -5,7 +5,7 @@ export const manifest = setupManifest({
   id: 'linkwarden',
   title: 'Linkwarden',
   license: 'AGPL-3.0-only',
-  packageRepo: 'https://github.com/Start9-Community/linkwarden-startos',
+  packageRepo: 'https://github.com/Start9Labs/linkwarden-startos',
   upstreamRepo: 'https://github.com/linkwarden/linkwarden',
   marketingUrl: 'https://linkwarden.app',
   donationUrl: null,
