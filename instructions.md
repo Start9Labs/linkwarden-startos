@@ -5,7 +5,7 @@ created becomes the administrator. Create yours before anyone else can.
 
 ## Documentation
 
-- [Linkwarden self-hosting guide](https://docs.linkwarden.app/self-hosting/installation) — how the application is configured and what each component does.
+- [Linkwarden self-hosting guide](https://docs.linkwarden.app/self-hosting/setup) — how the application is configured and what each component does.
 - [Environment variables reference](https://docs.linkwarden.app/self-hosting/environment-variables) — every setting Linkwarden understands.
 - [Upstream README](https://github.com/linkwarden/linkwarden#readme) — feature overview and screenshots.
 
